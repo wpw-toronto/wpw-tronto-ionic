@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'map-route',
     loadChildren: () => import('./map-route/map-route.module').then( m => m.MapRoutePageModule)
+  },
+  {
+    path: 'schedule-event',
+    loadChildren: () => import('./schedule-event/schedule-event.module').then( m => m.ScheduleEventPageModule)
   }
 ];
 

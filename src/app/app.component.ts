@@ -25,6 +25,11 @@ export class AppComponent {
       title: 'Map-Route',
       url: '/map-route',
       icon: 'map'
+    },
+    {
+      title: 'Schedule-Event',
+      url: '/schedule-event',
+      icon: 'list'
     }
   ];
 

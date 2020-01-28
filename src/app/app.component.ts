@@ -37,6 +37,11 @@ export class AppComponent {
       icon: 'musical-notes'
     },
     {
+      title: 'Foodtruck',
+      url: '/foodtruck',
+      icon: 'pizza'
+    },
+    {
       title: 'Donate',
       url: '/donate',
       icon: 'cash'

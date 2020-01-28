@@ -28,6 +28,10 @@ const routes: Routes = [
     loadChildren: () => import('./schedule-performance/schedule-performance.module').then( m => m.SchedulePerformancePageModule)
   },
   {
+    path: 'foodtruck',
+    loadChildren: () => import('./foodtruck/foodtruck.module').then(m => m.FoodtruckPageModule)
+  },
+  {
     path: 'donate',
     loadChildren: () => import('./donate/donate.module').then( m => m.DonatePageModule)
   }

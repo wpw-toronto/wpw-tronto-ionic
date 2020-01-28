@@ -55,7 +55,8 @@ describe('AppComponent', () => {
     expect(menuItems[2].textContent).toContain('Map-Route');
     expect(menuItems[3].textContent).toContain('Schedule-Event');
     expect(menuItems[4].textContent).toContain('Schedule-Performance');
-    expect(menuItems[5].textContent).toContain('Donate');
+    expect(menuItems[5].textContent).toContain('Foodtruck');
+    expect(menuItems[6].textContent).toContain('Donate');
   });
 
   it('should have urls', async () => {
@@ -69,7 +70,8 @@ describe('AppComponent', () => {
     expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/map-route');
     expect(menuItems[3].getAttribute('ng-reflect-router-link')).toEqual('/schedule-event');
     expect(menuItems[4].getAttribute('ng-reflect-router-link')).toEqual('/schedule-performance');
-    expect(menuItems[5].getAttribute('ng-reflect-router-link')).toEqual('/donate');
+    expect(menuItems[5].getAttribute('ng-reflect-router-link')).toEqual('/foodtruck');
+    expect(menuItems[6].getAttribute('ng-reflect-router-link')).toEqual('/donate');
   });
 
 });

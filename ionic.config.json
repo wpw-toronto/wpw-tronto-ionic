@@ -1,5 +1,7 @@
 {
   "name": "wpw-toronto",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

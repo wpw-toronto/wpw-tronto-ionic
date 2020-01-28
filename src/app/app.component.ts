@@ -30,6 +30,11 @@ export class AppComponent {
       title: 'Schedule-Event',
       url: '/schedule-event',
       icon: 'list'
+    },
+    {
+      title: 'Schedule-Performance',
+      url: '/schedule-performance',
+      icon: 'musical-notes'
     }
   ];
 

@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'schedule-performance',
     loadChildren: () => import('./schedule-performance/schedule-performance.module').then( m => m.SchedulePerformancePageModule)
+  },
+  {
+    path: 'donate',
+    loadChildren: () => import('./donate/donate.module').then( m => m.DonatePageModule)
   }
 ];
 

@@ -35,7 +35,13 @@ export class AppComponent {
       title: 'Schedule-Performance',
       url: '/schedule-performance',
       icon: 'musical-notes'
+    },
+    {
+      title: 'Donate',
+      url: '/donate',
+      icon: 'cash'
     }
+    
   ];
 
   constructor(

@@ -5,12 +5,14 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    NgxIonicImageViewerModule,
     RouterModule.forChild([
       {
         path: '',

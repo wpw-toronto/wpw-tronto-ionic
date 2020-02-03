@@ -8,12 +8,15 @@ import { MapEventPageRoutingModule } from './map-event-routing.module';
 
 import { MapEventPage } from './map-event.page';
 
+import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    MapEventPageRoutingModule
+    MapEventPageRoutingModule,
+    NgxIonicImageViewerModule
   ],
   declarations: [MapEventPage]
 })

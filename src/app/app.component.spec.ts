@@ -57,6 +57,7 @@ describe('AppComponent', () => {
     expect(menuItems[4].textContent).toContain('Schedule-Performance');
     expect(menuItems[5].textContent).toContain('Foodtruck');
     expect(menuItems[6].textContent).toContain('Donate');
+    expect(menuItems[y].textContent).toContain('About Us');
   });
 
   it('should have urls', async () => {
@@ -72,6 +73,7 @@ describe('AppComponent', () => {
     expect(menuItems[4].getAttribute('ng-reflect-router-link')).toEqual('/schedule-performance');
     expect(menuItems[5].getAttribute('ng-reflect-router-link')).toEqual('/foodtruck');
     expect(menuItems[6].getAttribute('ng-reflect-router-link')).toEqual('/donate');
+    expect(menuItems[7].getAttribute('ng-reflect-router-link')).toEqual('/aboutus');
   });
 
 });

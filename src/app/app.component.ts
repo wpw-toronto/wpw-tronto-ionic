@@ -45,6 +45,11 @@ export class AppComponent {
       title: 'Donate',
       url: '/donate',
       icon: 'cash'
+    },
+    {
+      title: 'About Us',
+      url: '/aboutus',
+      icon: 'information-circle-outline'
     }
     
   ];

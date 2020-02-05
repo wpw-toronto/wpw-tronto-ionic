@@ -57,7 +57,7 @@ describe('AppComponent', () => {
     expect(menuItems[4].textContent).toContain('Schedule-Performance');
     expect(menuItems[5].textContent).toContain('Foodtruck');
     expect(menuItems[6].textContent).toContain('Donate');
-    expect(menuItems[y].textContent).toContain('About Us');
+    expect(menuItems[7].textContent).toContain('About Us');
   });
 
   it('should have urls', async () => {

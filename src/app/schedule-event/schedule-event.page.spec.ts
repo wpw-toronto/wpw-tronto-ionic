@@ -1,7 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { Component } from '@angular/core';
 
 import { ScheduleEventPage } from './schedule-event.page';
+@Component({
+  templateUrl: 'schedule-event.page.html'
+})
+export class ListPage { }
 
 describe('ScheduleEventPage', () => {
   let component: ScheduleEventPage;

@@ -9,6 +9,182 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div><span>Schedule - Event</span></div>
+<ion-content >
+  <ion-list inset>
+    <ion-list-header>
+      <ion-text style="width: 100%; text-align: center;">
+        <h3 >SCHEDULE LIST</h3><br>
+      </ion-text>
+    </ion-list-header>
+
+    <ion-item-group>
+      <ion-item-divider color="primary">
+          <ion-icon name="clock"></ion-icon>
+          &nbsp;
+          <ion-label>08:00 AM</ion-label>
+      </ion-item-divider>
+
+      <ion-item lines="none">
+        <ion-label>Site is Open to volunteers</ion-label>
+      </ion-item>
+
+      <ion-item-divider color="primary">
+        <ion-icon name="clock"></ion-icon>
+        &nbsp;
+        <ion-label>08:00 AM</ion-label>
+      </ion-item-divider>
+
+      <ion-item lines="none">
+        <ion-label>Volunteer Registration and Breakfast</ion-label>
+      </ion-item>
+
+      <ion-item-divider color="primary">
+        <ion-icon name="clock"></ion-icon>
+        &nbsp;
+        <ion-label>10:00 AM</ion-label>
+      </ion-item-divider>
+
+      <ion-item lines="none">
+        <ion-label>Site is Open to everyone</ion-label>
+      </ion-item>
+
+      <ion-item-divider color="primary">
+        <ion-icon name="clock"></ion-icon>
+        &nbsp;
+        <ion-label>10:00 AM</ion-label>
+      </ion-item-divider>
+
+      <ion-item lines="none">
+        <ion-label>Food area is Open <br><br>
+          &nbsp;&nbsp;<ion-icon name="checkmark" class="foodList" color="warning"></ion-icon> Fund Collection<br>
+          &nbsp;&nbsp;<ion-icon name="checkmark" class="foodList" color="warning"></ion-icon> Teams Area<br>
+          &nbsp;&nbsp;<ion-icon name="checkmark" class="foodList" color="warning"></ion-icon> Photo Booths<br>
+          &nbsp;&nbsp;<ion-icon name="checkmark" class="foodList" color="warning"></ion-icon> Partnershop<br>
+          &nbsp;&nbsp;<ion-icon name="checkmark" class="foodList" color="warning"></ion-icon> Seniors & Kids Area are all now open<br>
+        </ion-label>
+      </ion-item>
+
+      <ion-item-divider color="primary">
+        <ion-icon name="clock"></ion-icon>
+        &nbsp;
+        <ion-label>11:00 AM</ion-label>
+      </ion-item-divider>
+
+      <ion-item lines="none">
+        <ion-label>Opening Ceremonies begin</ion-label>
+      </ion-item>
+
+      <ion-item-divider color="primary">
+        <ion-icon name="clock"></ion-icon>
+        &nbsp;
+        <ion-label>12:15 PM</ion-label>
+      </ion-item-divider>
+
+      <ion-item lines="none">
+        <ion-label>Ribbon cutting and start of the Walk</ion-label>
+      </ion-item>
+
+      <ion-item-divider color="primary">
+        <ion-icon name="clock"></ion-icon>
+        &nbsp;
+        <ion-label>02:00 PM</ion-label>
+      </ion-item-divider>
+
+      <ion-item lines="none">
+        <ion-label>Awards and Entertainment Programs begin</ion-label>
+      </ion-item>
+
+      <ion-item-divider color="primary">
+        <ion-icon name="clock"></ion-icon>
+        &nbsp;
+        <ion-label>03:45 PM</ion-label>
+      </ion-item-divider>
+
+      <ion-item lines="none">
+        <ion-label>Closing Remarks by Imran J</ion-label>
+      </ion-item>
+
+      <ion-item-divider color="primary">
+        <ion-icon name="clock"></ion-icon>
+        &nbsp;
+        <ion-label>04:00 PM</ion-label>
+      </ion-item-divider>
+
+      <ion-item lines="none">
+        <ion-label>Tear down and wrap up</ion-label>
+      </ion-item>
+
+      <ion-item-divider color="primary">
+        <ion-icon name="clock"></ion-icon>
+        &nbsp;
+        <ion-label>04:00 PM</ion-label>
+      </ion-item-divider>
+
+      <ion-item lines="none">
+        <ion-label>Vacate the site</ion-label>
+      </ion-item>
+    </ion-item-group>
+  </ion-list>
+  <!-- <ion-list inset>
+
+  <ion-list-header>Program Schedule List</ion-list-header>
+
+    <ion-item>
+      <ion-label>Site is Open to volunteers</ion-label>
+      <ion-note slot="start" color="success">08:00 AM</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Volunteer Registration and Breakfast</ion-label>
+      <ion-note slot="start" color="warning">08:00 AM</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Site is Open to everyone</ion-label>
+      <ion-note slot="start" color="danger">10:00 AM</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Food area is Open <br><br>
+        &nbsp;&nbsp;<ion-icon name="checkmark" class="foodList" color="warning"></ion-icon> Fund Collection<br>
+        &nbsp;&nbsp;<ion-icon name="checkmark" class="foodList" color="warning"></ion-icon> Teams Area<br>
+        &nbsp;&nbsp;<ion-icon name="checkmark" class="foodList" color="warning"></ion-icon> Photo Booths<br>
+        &nbsp;&nbsp;<ion-icon name="checkmark" class="foodList" color="warning"></ion-icon> Partnershop<br>
+        &nbsp;&nbsp;<ion-icon name="checkmark" class="foodList" color="warning"></ion-icon> Seniors & Kids Area are all now open
+      </ion-label>
+      <ion-note slot="start" color="dark">10:00 AM</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Opening Ceremonies begin</ion-label>
+      <ion-note slot="start" color="success">11:00 AM</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Ribbon cutting and start of the Walk</ion-label>
+      <ion-note slot="start" color="warning">12:15 PM</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Awards and Entertainment Programs begin</ion-label>
+      <ion-note slot="start" color="danger">02:00 PM</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Closing Remarks by Imran J</ion-label>
+      <ion-note slot="start" color="success">03:45 PM</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Tear down and wrap up</ion-label>
+      <ion-note slot="start" color="warning">04:00 PM</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Vacate the site</ion-label>
+      <ion-note slot="start" color="danger">06:00 PM</ion-note>
+    </ion-item>
+  </ion-list> -->
 </ion-content>
+
+

@@ -9,6 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,7 +18,8 @@ import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    NgxIonicImageViewerModule
+    NgxIonicImageViewerModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,

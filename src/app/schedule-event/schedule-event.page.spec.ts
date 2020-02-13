@@ -3,6 +3,10 @@ import { IonicModule } from '@ionic/angular';
 import { Component } from '@angular/core';
 
 import { ScheduleEventPage } from './schedule-event.page';
+
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
 @Component({
   templateUrl: 'schedule-event.page.html'
 })
@@ -15,7 +19,7 @@ describe('ScheduleEventPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ScheduleEventPage ],
-      imports: [IonicModule.forRoot()]
+      imports: [IonicModule.forRoot(), HttpClientTestingModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ScheduleEventPage);
@@ -31,5 +35,11 @@ describe('ScheduleEventPage', () => {
     const page = fixture.nativeElement;
     const title = page.querySelectorAll('ion-title');
     expect(title[0].textContent).toContain('Schedule - Event');
+  })
+
+  it('should get schedule from server', async () => {
+    const fixture = await TestBed.createComponent(ScheduleEventPage);
+    await fixture.detectChanges();
+    expect(fixture.componentInstance.list_event).toBeDefined();
   })
 });

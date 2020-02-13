@@ -26,4 +26,10 @@ describe('ScheduleEventPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have a title as Schedule - Event', () => {
+    const page = fixture.nativeElement;
+    const title = page.querySelectorAll('ion-title');
+    expect(title[0].textContent).toContain('Schedule - Event');
+  })
 });

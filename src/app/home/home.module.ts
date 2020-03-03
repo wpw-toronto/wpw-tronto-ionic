@@ -1,3 +1,4 @@
+import { FirebaseUIModule } from 'firebaseui-angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -12,6 +13,7 @@ import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
     CommonModule,
     FormsModule,
     IonicModule,
+    FirebaseUIModule,
     NgxIonicImageViewerModule,
     RouterModule.forChild([
       {

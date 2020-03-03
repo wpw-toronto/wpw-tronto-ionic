@@ -1,0 +1,13 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>loginpage</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <firebase-ui (signInSuccessWithAuthResult)="successCallback($event)" (signInFailure)="errorCallback($event)"></firebase-ui>
+
+    <h1 *ngIf="afAuth.auth.currentUser">
+        Welcome {{afAuth.auth.currentUser.displayName}}!
+    </h1>
+</ion-content>

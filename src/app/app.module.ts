@@ -10,6 +10,21 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 
+import {FirebaseUIModule, firebase, firebaseui} from 'firebaseui-angular'
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {environment} from '../environments/environment';
+
+const firebaseUiAuthConfig: firebaseui.auth.Config = {
+  signInFlow: 'popup',
+  signInOptions: [
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+  ],
+  tosUrl: '<your-tos-link>',
+  privacyPolicyUrl: '<your-privacyPolicyUrl-link>',
+  credentialHelper: firebaseui.auth.CredentialHelper.NONE
+};
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -17,7 +32,10 @@ import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    NgxIonicImageViewerModule
+    NgxIonicImageViewerModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    FirebaseUIModule.forRoot(firebaseUiAuthConfig)
   ],
   providers: [
     StatusBar,

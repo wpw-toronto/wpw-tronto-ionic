@@ -102,6 +102,8 @@ export class AppComponent {
           console.log('Received in foreground');
         }
       });
+
+      this.fcm.subscribeToTopic('WPW');
     });
   }
 }

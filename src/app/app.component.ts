@@ -4,6 +4,8 @@ import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { FCM } from '@ionic-native/fcm/ngx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -65,6 +67,8 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public afAuth: AngularFireAuth,
+    private fcm: FCM,
+    private router: Router
   ) {
     this.initializeApp();
   }
@@ -81,6 +85,23 @@ export class AppComponent {
       });
       this.statusBar.styleDefault();
       // this.splashScreen.hide();
+
+      this.fcm.getToken().then(token => {
+        console.log(token);
+      });
+
+      this.fcm.onTokenRefresh().subscribe(token => {
+        console.log(token);
+      });
+
+      this.fcm.onNotification().subscribe(data => {
+        console.log(data);
+        if (data.wasTapped) {
+          console.log('Received in background');
+        } else {
+          console.log('Received in foreground');
+        }
+      });
     });
   }
 }

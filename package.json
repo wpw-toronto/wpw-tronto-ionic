@@ -28,6 +28,7 @@
         "cordova-android": "8.1.0",
         "cordova-ios": "^5.1.1",
         "cordova-plugin-fcm-with-dependecy-updated": "^4.2.0",
+        "cordova-res": "^0.10.0",
         "core-js": "^2.5.4",
         "firebase": "^7.9.3",
         "firebaseui": "^4.4.0",

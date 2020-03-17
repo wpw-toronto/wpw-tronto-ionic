@@ -1,6 +1,6 @@
 
 
-export interface ScheduleEvent {
+export interface ModelSchedule {
   id: string;
   time_start: string;
   time_end: string;

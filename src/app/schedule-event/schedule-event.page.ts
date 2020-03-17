@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudServiceScheduleEvent } from './schedule-event.service';
-import { ScheduleEvent } from '../model/schedule.model'
+import { ModelSchedule } from '../model/schedule.model'
 import { Observable } from 'rxjs';
 
 @Component({
@@ -14,7 +14,7 @@ import { Observable } from 'rxjs';
 
 export class ScheduleEventPage implements OnInit {
 
-  public eventList: Observable<ScheduleEvent[]>;
+  public eventList: Observable<ModelSchedule[]>;
   public eventService;
 
   //change the color on the basis of event passed

@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
-import { ScheduleEvent } from '../model/schedule.model'
+import { ModelSchedule } from '../model/schedule.model'
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CrudServiceScheduleEvent {
-  eventCollection: AngularFirestoreCollection<ScheduleEvent>;
-  eventList: Observable<ScheduleEvent[]>;
+  eventCollection: AngularFirestoreCollection<ModelSchedule>;
+  eventList: Observable<ModelSchedule[]>;
 
   constructor(
     private firestore: AngularFirestore
@@ -21,7 +21,7 @@ export class CrudServiceScheduleEvent {
   }
 
   read_ScheduleEvent() {
-    this.eventCollection = this.firestore.collection<ScheduleEvent>('schedule-event', ref => ref.orderBy('order'));
+    this.eventCollection = this.firestore.collection<ModelSchedule>('schedule-event', ref => ref.orderBy('order'));
     // this.eventList = this.eventCollection.snapshotChanges();
     return this.eventCollection.snapshotChanges();
   }

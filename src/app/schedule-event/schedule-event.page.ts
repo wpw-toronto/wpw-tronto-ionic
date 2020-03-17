@@ -10,8 +10,6 @@ import { Observable } from 'rxjs';
 })
 
 
-
-
 export class ScheduleEventPage implements OnInit {
 
   public eventList: Observable<ModelSchedule[]>;
@@ -112,7 +110,6 @@ export class ScheduleEventPage implements OnInit {
       // console.log(this.eventList);
       // console.log(data);
     });
-
   }
 
 }

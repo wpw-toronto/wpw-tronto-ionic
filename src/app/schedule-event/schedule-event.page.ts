@@ -1,70 +1,21 @@
 import { Component, OnInit } from '@angular/core';
+import { CrudServiceScheduleEvent } from './schedule-event.service';
+import { ScheduleEvent } from '../model/schedule.model'
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-schedule-event',
   templateUrl: './schedule-event.page.html',
   styleUrls: ['./schedule-event.page.scss'],
 })
+
+
+
+
 export class ScheduleEventPage implements OnInit {
 
-  public dataSchedule = [
-    {
-      time: '8:00 AM',
-      description: 'Site is Open to volunteers',
-      color: this.getTimeHighlight('08:00 AM')
-    },
-    {
-      time: '8:00 AM',
-      description: 'Volunteer Registration and Breakfast',
-      color: this.getTimeHighlight('08:00 AM')
-    },
-    {
-      time: '10:00 AM',
-      description: 'Site is Open to everyone',
-      color: this.getTimeHighlight('10:00 AM')
-    },
-    {
-      time: '10:00 AM',
-      description: 'Food area is Open',
-      color: this.getTimeHighlight('10:00 AM'),
-      subitem: ['Fund Collection',
-        '  Teams Area',
-        ' Photo Booths',
-        ' Partnershop',
-        ' Seniors & Kids Area are all now open'
-      ]
-    },
-    {
-      time: '11:00 AM',
-      description: 'Opening Ceremonies begin',
-      color: this.getTimeHighlight('11:00 AM')
-    },
-    {
-      time: '12:15 PM',
-      description: 'Ribbon cutting and start of the Walk',
-      color: this.getTimeHighlight('12:15 PM')
-    },
-    {
-      time: '02:00 PM',
-      description: 'Awards and Entertainment Programs begin',
-      color: this.getTimeHighlight('02:00 PM')
-    },
-    {
-      time: '03:45 PM',
-      description: 'Closing Remarks by Imran J',
-      color: this.getTimeHighlight('03:45 PM')
-    },
-    {
-      time: '04:00 PM',
-      description: 'Tear down and wrap up',
-      color: this.getTimeHighlight('04:00 PM')
-    },
-    {
-      time: '04:00 PM',
-      description: 'Vacate the sit',
-      color: this.getTimeHighlight('04:00 PM')
-    },
-  ];
+  public eventList: Observable<ScheduleEvent[]>;
+  public eventService;
 
   //change the color on the basis of event passed
   getTimeHighlight(event_time){
@@ -142,12 +93,26 @@ export class ScheduleEventPage implements OnInit {
     return hours;
   }
   
-  constructor() { 
+  constructor(private crudService: CrudServiceScheduleEvent) { 
     console.log(new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
-    
   }
 
   ngOnInit() {
+    this.eventService = this.crudService.read_ScheduleEvent();
+    this.eventService.subscribe(data => {
+      this.eventList = (data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          title: e.payload.doc.data()['title'],
+          time_start: e.payload.doc.data()['time'],
+          subitem: e.payload.doc.data()['subitem'],
+        };
+      }));
+      
+      // console.log(this.eventList);
+      // console.log(data);
+    });
+
   }
 
 }

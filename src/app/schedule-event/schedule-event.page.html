@@ -17,15 +17,15 @@
       </ion-text>
     </ion-list-header>
 
-    <ion-item-group *ngFor="let item of dataSchedule">
-      <ion-item-divider color={{item.color}}>
+    <ion-item-group *ngFor="let item of (eventList)">
+      <!-- <ion-item>{{item.title}}</ion-item> -->
+      <ion-item-divider color="{{getTimeHighlight(item.time_start)}}">
         <ion-icon name="clock"></ion-icon>
         &nbsp;
-        <ion-label>{{item.time}}</ion-label>
+        <ion-label>{{item.time_start}}</ion-label>
       </ion-item-divider>
-      
       <ion-item lines="none">
-        <ion-label>{{item.description}} 
+        <ion-label>{{item.title}}
           <ion-label *ngIf="item.subitem != undefined"> <br>
             <ion-label *ngFor="let sub of item.subitem; index as i">
               &nbsp;&nbsp;<ion-icon name="checkmark" class="foodList" color="warning"></ion-icon>{{item.subitem[i]}}<br>
@@ -34,7 +34,7 @@
         </ion-label>
       </ion-item>
     </ion-item-group>
-
+   
     <!-- <ion-item-group>
       <ion-item-divider color="primary" >
           <ion-icon name="clock"></ion-icon>

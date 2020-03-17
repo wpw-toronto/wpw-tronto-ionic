@@ -13,6 +13,7 @@ import { NgxIonicImageViewerModule } from 'ngx-ionic-image-viewer';
 import {FirebaseUIModule, firebase, firebaseui} from 'firebaseui-angular';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import {environment} from '../environments/environment';
 import { FCM } from '@ionic-native/fcm/ngx';
 
@@ -36,6 +37,7 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
     NgxIonicImageViewerModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFirestoreModule,
     FirebaseUIModule.forRoot(firebaseUiAuthConfig)
   ],
   providers: [

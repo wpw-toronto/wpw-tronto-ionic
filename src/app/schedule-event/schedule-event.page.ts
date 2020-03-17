@@ -63,6 +63,7 @@ export class ScheduleEventPage implements OnInit {
   }
 
   ngOnInit() {
+    // Get data from the server
     this.eventService = this.crudService.read_ScheduleEvent();
     this.eventService.subscribe(data => {
       this.eventList = (data.map(e => {

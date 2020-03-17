@@ -61,6 +61,7 @@ export class SchedulePerformancePage implements OnInit {
   constructor(private crudService: CrudServiceSchedulePerformance) { }
 
   ngOnInit() {
+    // Get data from the server
     this.performanceService = this.crudService.read_SchedulePerformance();
     this.performanceService.subscribe(data => {
       this.performanceList = (data.map(e => {

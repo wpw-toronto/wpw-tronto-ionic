@@ -1,7 +1,8 @@
 {
   "name": "wpw-toronto",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }

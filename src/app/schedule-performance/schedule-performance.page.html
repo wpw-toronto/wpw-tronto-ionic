@@ -11,17 +11,16 @@
 
 <ion-content >
   <ion-list inset>
-    
     <ion-list-header>
-      <ion-text>
-        <h3 style="width: 100%; text-align: center;">PERFORMANCE LIST</h3>
+      <ion-text style="width: 100%; text-align: center;">
+        <h3>PERFORMANCE LIST</h3>
         <h6>OPENING CEREMONIES & AFTERNOON STAGE PROGRAM</h6><br>
       </ion-text>
     </ion-list-header>
 
     <ion-item-group *ngFor="let item of (performanceList)">
       <!-- <ion-item-divider color="primary"> -->
-      <ion-item-divider color="{{getTimeHighlight(item.time_start)}}">
+      <ion-item-divider color="{{getTimeHighlight(item.time_start,item.time_end)}}">
         <ion-icon name="clock"></ion-icon>
         &nbsp;
         <ion-label>{{item.time_start}} - {{item.time_end}}</ion-label>
@@ -36,6 +35,5 @@
         </ion-label>
       </ion-item>
     </ion-item-group>
-
   </ion-list>
 </ion-content>

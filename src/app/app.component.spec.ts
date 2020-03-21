@@ -66,9 +66,14 @@ describe('AppComponent', () => {
   it('should have menu labels', async () => {
     const fixture = await TestBed.createComponent(AppComponent);
     await fixture.detectChanges();
+    
+    
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-label');
-    // TODO : do somthing with if-else according to Auth.
+    // TODO : do somthing with if-else according to Auth. -> Move this to login?
+    // if (fixture.componentInstance.afAuth.auth.currentUser) {
+    // } else {
+    // }
     expect(menuItems.length).toEqual(0);
     // It is commented out since it goes login page first if it is not logged-in
     // expect(menuItems[0].textContent).toContain('Home');
@@ -87,7 +92,10 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-item');
-    // TODO : do somthing with if-else according to Auth.
+    // TODO : do somthing with if-else according to Auth. -> Move this to login?
+    // if (fixture.componentInstance.afAuth.auth.currentUser) {
+    // } else {
+    // }
     expect(menuItems.length).toEqual(0);
     // It is commented out since it goes login page first if it is not logged-in
     // expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/home');

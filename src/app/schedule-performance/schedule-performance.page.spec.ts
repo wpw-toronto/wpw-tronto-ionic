@@ -3,6 +3,13 @@ import { IonicModule } from '@ionic/angular';
 
 import { SchedulePerformancePage } from './schedule-performance.page';
 
+import { RouterTestingModule } from '@angular/router/testing';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { environment } from '../../environments/environment';
+
+
 describe('SchedulePerformancePage', () => {
   let component: SchedulePerformancePage;
   let fixture: ComponentFixture<SchedulePerformancePage>;
@@ -10,7 +17,16 @@ describe('SchedulePerformancePage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SchedulePerformancePage ],
-      imports: [IonicModule.forRoot()]
+      providers: [
+        AngularFireAuth,
+        AngularFirestore,
+      ],
+      imports: [
+        IonicModule.forRoot(),
+        RouterTestingModule.withRoutes([]),
+        AngularFireModule.initializeApp(environment.firebase), //ajout
+        AngularFireAuthModule //ajout
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(SchedulePerformancePage);

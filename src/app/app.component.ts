@@ -76,13 +76,6 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
 
-      this.platform.backButton.subscribeWithPriority(9999, () => {
-        document.addEventListener('backbutton', function (event) {
-          event.preventDefault();
-          event.stopPropagation();
-          console.log('hello');
-        }, false);
-      });
       this.statusBar.styleDefault();
       // this.splashScreen.hide();
 
@@ -104,6 +97,15 @@ export class AppComponent {
       });
 
       this.fcm.subscribeToTopic('WPW');
+
+      
+      this.platform.backButton.subscribeWithPriority(9999, () => {
+        document.addEventListener('backbutton', function (event) {
+          event.preventDefault();
+          event.stopPropagation();
+          // console.log('hello');
+        }, false);
+      });
     });
   }
 }

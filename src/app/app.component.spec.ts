@@ -8,15 +8,27 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { AppComponent } from './app.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
+import { environment } from '../environments/environment';
+import { FCM } from '@ionic-native/fcm/ngx';
+
 describe('AppComponent', () => {
 
   let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy;
+  // let mockReportService;
+  // let backButtonSpy;
+  // let platformService;
 
   beforeEach(async(() => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
     splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
     platformReadySpy = Promise.resolve();
     platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
+
+    // platformService = {
+    //   backButton: jasmine.createSpyObj('backButton', ['subscribeWithPriority']),
+    // }
 
     TestBed.configureTestingModule({
       declarations: [AppComponent],
@@ -25,8 +37,14 @@ describe('AppComponent', () => {
         { provide: StatusBar, useValue: statusBarSpy },
         { provide: SplashScreen, useValue: splashScreenSpy },
         { provide: Platform, useValue: platformSpy },
+        FCM,
+        AngularFireAuth,
       ],
-      imports: [ RouterTestingModule.withRoutes([])],
+      imports: [ 
+        RouterTestingModule.withRoutes([]),
+        AngularFireModule.initializeApp(environment.firebase), //ajout
+        AngularFireAuthModule //ajout
+      ],
     }).compileComponents();
   }));
 
@@ -41,6 +59,7 @@ describe('AppComponent', () => {
     expect(platformSpy.ready).toHaveBeenCalled();
     await platformReadySpy;
     expect(statusBarSpy.styleDefault).toHaveBeenCalled();
+    // expect(platformService.backButton.subscribeWithPriority).toHaveBeenCalled();
     // expect(splashScreenSpy.hide).toHaveBeenCalled();
   });
 
@@ -49,15 +68,18 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-label');
-    expect(menuItems.length).toEqual(8);
-    expect(menuItems[0].textContent).toContain('Home');
-    expect(menuItems[1].textContent).toContain('Map-Event');
-    expect(menuItems[2].textContent).toContain('Map-Route');
-    expect(menuItems[3].textContent).toContain('Schedule-Event');
-    expect(menuItems[4].textContent).toContain('Schedule-Performance');
-    expect(menuItems[5].textContent).toContain('Foodtruck');
-    expect(menuItems[6].textContent).toContain('Donate');
-    expect(menuItems[7].textContent).toContain('About Us');
+    // TODO : do somthing with if-else according to Auth.
+    expect(menuItems.length).toEqual(0);
+    // It is commented out since it goes login page first if it is not logged-in
+    // expect(menuItems[0].textContent).toContain('Home');
+    // expect(menuItems[1].textContent).toContain('Map-Event');
+    // expect(menuItems[2].textContent).toContain('Map-Route');
+    // expect(menuItems[3].textContent).toContain('Schedule-Event');
+    // expect(menuItems[4].textContent).toContain('Schedule-Performance');
+    // expect(menuItems[5].textContent).toContain('Foodtruck');
+    // expect(menuItems[6].textContent).toContain('Donate');
+    // expect(menuItems[7].textContent).toContain('About Us');
+    // expect(menuItems[8].textContent).toContain('Sign out');
   });
 
   it('should have urls', async () => {
@@ -65,15 +87,18 @@ describe('AppComponent', () => {
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-item');
-    expect(menuItems.length).toEqual(8);
-    expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/home');
-    expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/map-event');
-    expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/map-route');
-    expect(menuItems[3].getAttribute('ng-reflect-router-link')).toEqual('/schedule-event');
-    expect(menuItems[4].getAttribute('ng-reflect-router-link')).toEqual('/schedule-performance');
-    expect(menuItems[5].getAttribute('ng-reflect-router-link')).toEqual('/foodtruck');
-    expect(menuItems[6].getAttribute('ng-reflect-router-link')).toEqual('/donate');
-    expect(menuItems[7].getAttribute('ng-reflect-router-link')).toEqual('/aboutus');
+    // TODO : do somthing with if-else according to Auth.
+    expect(menuItems.length).toEqual(0);
+    // It is commented out since it goes login page first if it is not logged-in
+    // expect(menuItems[0].getAttribute('ng-reflect-router-link')).toEqual('/home');
+    // expect(menuItems[1].getAttribute('ng-reflect-router-link')).toEqual('/map-event');
+    // expect(menuItems[2].getAttribute('ng-reflect-router-link')).toEqual('/map-route');
+    // expect(menuItems[3].getAttribute('ng-reflect-router-link')).toEqual('/schedule-event');
+    // expect(menuItems[4].getAttribute('ng-reflect-router-link')).toEqual('/schedule-performance');
+    // expect(menuItems[5].getAttribute('ng-reflect-router-link')).toEqual('/foodtruck');
+    // expect(menuItems[6].getAttribute('ng-reflect-router-link')).toEqual('/donate');
+    // expect(menuItems[7].getAttribute('ng-reflect-router-link')).toEqual('/aboutus');
+    // expect(menuItems[8].getAttribute('ng-reflect-router-link')).toEqual('/signout');
   });
 
 });

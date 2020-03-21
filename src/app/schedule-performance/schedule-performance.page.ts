@@ -3,6 +3,8 @@ import { CrudServiceSchedulePerformance } from './schedule-performance.service';
 import { ModelSchedule } from '../model/schedule.model'
 import { Observable } from 'rxjs';
 
+import { AngularFireAuth } from '@angular/fire/auth';
+
 @Component({
   selector: 'app-schedule-performance',
   templateUrl: './schedule-performance.page.html',
@@ -58,7 +60,9 @@ export class SchedulePerformancePage implements OnInit {
     return hours;
   }
 
-  constructor(private crudService: CrudServiceSchedulePerformance) { }
+  constructor(
+    private crudService: CrudServiceSchedulePerformance,
+    public afAuth: AngularFireAuth) { }
 
   ngOnInit() {
     // Get data from the server

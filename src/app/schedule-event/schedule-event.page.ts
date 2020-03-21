@@ -3,6 +3,8 @@ import { CrudServiceScheduleEvent } from './schedule-event.service';
 import { ModelSchedule } from '../model/schedule.model'
 import { Observable } from 'rxjs';
 
+import { AngularFireAuth } from '@angular/fire/auth';
+
 @Component({
   selector: 'app-schedule-event',
   templateUrl: './schedule-event.page.html',
@@ -57,7 +59,10 @@ export class ScheduleEventPage implements OnInit {
     return hours;
   }
   
-  constructor(private crudService: CrudServiceScheduleEvent) { 
+  constructor(
+    private crudService: CrudServiceScheduleEvent,
+    public afAuth: AngularFireAuth
+    ) { 
     console.log(new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
   }
 

@@ -37,13 +37,19 @@ describe('ScheduleEventPage', () => {
     fixture = TestBed.createComponent(ScheduleEventPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    
   }));
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a title as Schedule - Event', () => {
+  it('should have a title as Schedule - Event', async() => {
+    if (fixture.componentInstance.afAuth.auth.currentUser) {
+    } else {
+      await fixture.componentInstance.afAuth.auth.signInWithEmailAndPassword('heons921@gmail.com', '123qweasd!');
+    }
+   
     const page = fixture.nativeElement;
     const title = page.querySelectorAll('ion-title');
     expect(title[0].textContent).toContain('Schedule - Event');

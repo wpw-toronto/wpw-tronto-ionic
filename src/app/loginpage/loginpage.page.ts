@@ -29,7 +29,9 @@ export class LoginpagePage implements OnInit {
   }
 
   ngOnInit() {
-    this.afAuth.auth.signOut();
+    if (this.afAuth.auth.currentUser) {
+      this.afAuth.auth.signOut();
+    }
   }
 
 }

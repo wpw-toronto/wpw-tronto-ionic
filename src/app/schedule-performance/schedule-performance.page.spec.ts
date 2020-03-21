@@ -38,7 +38,11 @@ describe('SchedulePerformancePage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should have a title as Schedule - Performance', () => {
+  it('should have a title as Schedule - Performance', async () => {
+    if (fixture.componentInstance.afAuth.auth.currentUser) {
+    } else {
+      await fixture.componentInstance.afAuth.auth.signInWithEmailAndPassword('heons921@gmail.com', '123qweasd!');
+    }
     const page = fixture.nativeElement;
     const title = page.querySelectorAll('ion-title');
     expect(title[0].textContent).toContain('Schedule - Performance');

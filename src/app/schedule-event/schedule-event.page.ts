@@ -9,7 +9,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./schedule-event.page.scss'],
 })
 
-
 export class ScheduleEventPage implements OnInit {
 
   public eventList: Observable<ModelSchedule[]>;

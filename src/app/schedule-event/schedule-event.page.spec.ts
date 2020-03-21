@@ -3,6 +3,13 @@ import { IonicModule } from '@ionic/angular';
 import { Component } from '@angular/core';
 
 import { ScheduleEventPage } from './schedule-event.page';
+
+import { RouterTestingModule } from '@angular/router/testing';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { environment } from '../../environments/environment';
+
 @Component({
   templateUrl: 'schedule-event.page.html'
 })
@@ -15,7 +22,16 @@ describe('ScheduleEventPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ScheduleEventPage ],
-      imports: [IonicModule.forRoot()]
+      providers: [
+        AngularFireAuth,
+        AngularFirestore,
+      ],
+      imports: [
+        IonicModule.forRoot(),
+        RouterTestingModule.withRoutes([]),
+        AngularFireModule.initializeApp(environment.firebase), //ajout
+        AngularFireAuthModule //ajout
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ScheduleEventPage);

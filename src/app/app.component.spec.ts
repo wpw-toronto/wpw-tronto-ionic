@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, ComponentFixture, async } from '@angular/core/testing';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -16,19 +16,14 @@ import { FCM } from '@ionic-native/fcm/ngx';
 describe('AppComponent', () => {
 
   let statusBarSpy, splashScreenSpy, platformReadySpy, platformSpy;
-  // let mockReportService;
-  // let backButtonSpy;
-  // let platformService;
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
 
   beforeEach(async(() => {
     statusBarSpy = jasmine.createSpyObj('StatusBar', ['styleDefault']);
     splashScreenSpy = jasmine.createSpyObj('SplashScreen', ['hide']);
     platformReadySpy = Promise.resolve();
     platformSpy = jasmine.createSpyObj('Platform', { ready: platformReadySpy });
-
-    // platformService = {
-    //   backButton: jasmine.createSpyObj('backButton', ['subscribeWithPriority']),
-    // }
 
     TestBed.configureTestingModule({
       declarations: [AppComponent],
@@ -48,14 +43,26 @@ describe('AppComponent', () => {
     }).compileComponents();
   }));
 
+  beforeEach(function () {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+  });
+
+  afterEach(function () {
+    fixture.destroy();
+    component = null;
+  });
+
   it('should create the app', async () => {
-    const fixture = TestBed.createComponent(AppComponent);
+    // const fixture = TestBed.createComponent(AppComponent);
+    await fixture.detectChanges();
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it('should initialize the app', async () => {
-    TestBed.createComponent(AppComponent);
+    // TestBed.createComponent(AppComponent);
+    await fixture.detectChanges();
     expect(platformSpy.ready).toHaveBeenCalled();
     await platformReadySpy;
     expect(statusBarSpy.styleDefault).toHaveBeenCalled();
@@ -64,7 +71,7 @@ describe('AppComponent', () => {
   });
 
   it('should have menu labels', async () => {
-    const fixture = await TestBed.createComponent(AppComponent);
+    // const fixture = await TestBed.createComponent(AppComponent);
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-label');
@@ -97,7 +104,7 @@ describe('AppComponent', () => {
   });
 
   it('should have urls', async () => {
-    const fixture = await TestBed.createComponent(AppComponent);
+    // const fixture = await TestBed.createComponent(AppComponent);
     await fixture.detectChanges();
     const app = fixture.nativeElement;
     const menuItems = app.querySelectorAll('ion-item');

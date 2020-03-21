@@ -26,12 +26,23 @@ describe('SignoutPage', () => {
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SignoutPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture = TestBed.createComponent(SignoutPage);
+    // component = fixture.componentInstance;
+    // fixture.detectChanges();
   }));
 
+  beforeEach(function () {
+    fixture = TestBed.createComponent(SignoutPage);
+    component = fixture.componentInstance;
+  });
+
+  afterEach(function () {
+    fixture.destroy();
+    component = null;
+  });
+
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 });

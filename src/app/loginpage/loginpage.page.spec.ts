@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
 
 import { LoginpagePage } from './loginpage.page';
 
@@ -23,8 +24,14 @@ const firebaseUiAuthConfig: firebaseui.auth.Config = {
 describe('LoginpagePage', () => {
   let component: LoginpagePage;
   let fixture: ComponentFixture<LoginpagePage>;
+  var originalTimeout;
+
+  // jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
 
   beforeEach(async(() => {
+    originalTimeout = jasmine.DEFAULT_TIMEOUT_INTERVAL;
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+
     TestBed.configureTestingModule({
       declarations: [ LoginpagePage ],
       providers: [
@@ -36,15 +43,28 @@ describe('LoginpagePage', () => {
         AngularFireModule.initializeApp(environment.firebase),
         AngularFireAuthModule,
         FirebaseUIModule.forRoot(firebaseUiAuthConfig)
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(LoginpagePage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture = TestBed.createComponent(LoginpagePage);
+    // component = fixture.componentInstance;
+    // fixture.detectChanges();
   }));
 
+  beforeEach(function () {
+    fixture = TestBed.createComponent(LoginpagePage);
+    component = fixture.componentInstance;
+  });
+
+  afterEach(function () {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = originalTimeout;
+    fixture.destroy();
+    component = null;
+  });
+
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 });

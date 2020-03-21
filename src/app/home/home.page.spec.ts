@@ -21,12 +21,24 @@ describe('HomePage', () => {
       ]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HomePage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    // fixture = TestBed.createComponent(HomePage);
+    // component = fixture.componentInstance;
+    // fixture.detectChanges();
   }));
 
+  beforeEach(function () {
+    fixture = TestBed.createComponent(HomePage);
+    component = fixture.componentInstance;
+  });
+
+  afterEach(function () {
+    fixture.destroy();
+    component = null;
+  });
+
+
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
 });

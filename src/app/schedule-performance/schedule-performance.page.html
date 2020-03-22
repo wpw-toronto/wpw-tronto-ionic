@@ -18,7 +18,7 @@
       </ion-text>
     </ion-list-header>
 
-    <ion-item-group *ngFor="let item of (performanceList)">
+    <ion-item-group *ngFor="let item of (performanceList)" class="schedule-performance">
       <!-- <ion-item-divider color="primary"> -->
       <ion-item-divider color="{{getTimeHighlight(item.time_start,item.time_end)}}">
         <ion-icon name="clock"></ion-icon>

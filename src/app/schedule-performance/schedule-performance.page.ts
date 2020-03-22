@@ -14,6 +14,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class SchedulePerformancePage implements OnInit {
 
   public performanceList: Observable<ModelSchedule[]>;
+  public performanceListRawData;
   public performanceService;
 
   //change the color on the basis of event passed
@@ -62,12 +63,13 @@ export class SchedulePerformancePage implements OnInit {
 
   constructor(
     private crudService: CrudServiceSchedulePerformance,
-    public afAuth: AngularFireAuth) { }
+    public afAuth: AngularFireAuth) {   
+  }
 
-  ngOnInit() {
+  async getPerformanceList() {
     // Get data from the server
     this.performanceService = this.crudService.read_SchedulePerformance();
-    this.performanceService.subscribe(data => {
+    await this.performanceService.subscribe(data => {
       this.performanceList = (data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -77,7 +79,12 @@ export class SchedulePerformancePage implements OnInit {
           subitem: e.payload.doc.data()['subitem'],
         };
       }));
+      this.performanceListRawData = this.performanceList as unknown as ModelSchedule[];
     });
+  }
+
+  ngOnInit() {
+    this.getPerformanceList();
   }
 
 }

@@ -34,10 +34,6 @@ describe('SchedulePerformancePage', () => {
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
-
-    // fixture = TestBed.createComponent(SchedulePerformancePage);
-    // component = fixture.componentInstance;
-    // fixture.detectChanges();
   }));
 
   beforeEach(function () {
@@ -66,4 +62,20 @@ describe('SchedulePerformancePage', () => {
     const title = page.querySelectorAll('ion-title');
     expect(title[0].textContent).toContain('Schedule - Performance');
   })
+
+  it('should have schedule data from server', async () => {
+    // Login
+    fixture.detectChanges();
+    await fixture.componentInstance.afAuth.auth.signInWithEmailAndPassword('heons921@gmail.com', '123qweasd!');
+  
+    // Get event list from the server.
+    fixture.detectChanges();
+    await component.getPerformanceList().then(() => {
+      fixture.detectChanges();
+      const page = fixture.nativeElement;
+      const eventList = page.querySelectorAll('.schedule-performance');
+      expect(eventList.length).toBeGreaterThan(0);
+    });
+  });
+
 });

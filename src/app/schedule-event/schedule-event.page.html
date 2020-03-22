@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
+    <ion-title class="test_title">
       Schedule - Event
     </ion-title>
   </ion-toolbar>
@@ -17,7 +17,7 @@
       </ion-text>
     </ion-list-header>
 
-    <ion-item-group *ngFor="let item of (eventList)">
+    <ion-item-group *ngFor="let item of (eventList)" class="schedule-event">
       <ion-item-divider color="{{getTimeHighlight(item.time_start)}}">
         <ion-icon name="clock"></ion-icon>
         &nbsp;

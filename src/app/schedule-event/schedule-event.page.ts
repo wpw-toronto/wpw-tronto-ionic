@@ -14,6 +14,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class ScheduleEventPage implements OnInit {
 
   public eventList: Observable<ModelSchedule[]>;
+  // public eventList;
+  public eventListRawData: ModelSchedule[];
   public eventService;
 
   //change the color on the basis of event passed
@@ -63,13 +65,13 @@ export class ScheduleEventPage implements OnInit {
     private crudService: CrudServiceScheduleEvent,
     public afAuth: AngularFireAuth
     ) { 
-    console.log(new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
+    // console.log(new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}));
   }
 
-  ngOnInit() {
+  async getEventList() {
     // Get data from the server
     this.eventService = this.crudService.read_ScheduleEvent();
-    this.eventService.subscribe(data => {
+    await this.eventService.subscribe(data => {
       this.eventList = (data.map(e => {
         return {
           id: e.payload.doc.id,
@@ -78,7 +80,13 @@ export class ScheduleEventPage implements OnInit {
           subitem: e.payload.doc.data()['subitem'],
         };
       }));
+      // this.eventListRawData = this.eventList as unknown as ModelSchedule[];
+      this.eventListRawData = this.eventList as unknown as ModelSchedule[];
     });
+  }
+
+  ngOnInit() {
+    this.getEventList();
   }
 
 }

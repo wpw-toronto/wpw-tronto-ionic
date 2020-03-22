@@ -11,6 +11,9 @@ import { Observable } from 'rxjs';
 // FireStore Service class for ScheduleEvent
 export class CrudServiceScheduleEvent {
   eventCollection: AngularFirestoreCollection<ModelSchedule>;
+  eventService;
+  eventList;
+  eventListRawData: ModelSchedule[]; 
 
   constructor(
     private firestore: AngularFirestore
@@ -25,6 +28,23 @@ export class CrudServiceScheduleEvent {
   read_ScheduleEvent() {
     this.eventCollection = this.firestore.collection<ModelSchedule>('schedule-event', ref => ref.orderBy('order'));
     return this.eventCollection.snapshotChanges();
+  }
+
+  async readAndSaveScheduleEvent() {
+    // Get data from the server
+    this.eventService = this.read_ScheduleEvent();
+    await this.eventService.subscribe(data => {
+      this.eventList = (data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          title: e.payload.doc.data()['title'],
+          time_start: e.payload.doc.data()['time'],
+          subitem: e.payload.doc.data()['subitem'],
+        };
+      }));
+
+      this.eventListRawData = this.eventList as ModelSchedule[];
+    });
   }
 
   // Read by Id

@@ -74,20 +74,17 @@ describe('ScheduleEventPage', () => {
   })
 
   it('should have schedule data from server', async () => {
-    let dataArray: ModelSchedule[] = [];
-
+    
     // Login
     fixture.detectChanges();
-    if (fixture.componentInstance.afAuth.auth.currentUser) {
-    } else {
-      await fixture.componentInstance.afAuth.auth.signInWithEmailAndPassword('heons921@gmail.com', '123qweasd!');
-      fixture.detectChanges();
-    }
+    await fixture.componentInstance.afAuth.auth.signInWithEmailAndPassword('heons921@gmail.com', '123qweasd!');
 
     // Get event list from the server.
+    fixture.detectChanges();
     await component.getEventList().then(() => {
-      dataArray = component.eventListRawData;
-      expect(dataArray.length).toBeGreaterThan(0);
+      // let dataArray: ModelSchedule[] = [];
+      // dataArray = component.eventListRawData;
+      // expect(dataArray.length).toBeGreaterThan(0);
 
       const page = fixture.nativeElement;
       const eventList = page.querySelectorAll('.schedule-event');
@@ -97,13 +94,13 @@ describe('ScheduleEventPage', () => {
     // Test1
     // await component.getEventList();
     // fixture.detectChanges();
-    // dataArray = component.eventListRawData;
+    // let dataArray = component.eventListRawData;
     // expect(dataArray.length).toBeGreaterThan(0);
 
     // Test2
     // component.ngOnInit();
     // fixture.detectChanges();
-    // dataArray = component.eventListRawData;
+    // let dataArray = component.eventListRawData;
     // expect(dataArray.length).toBeGreaterThan(0);
     
   });

@@ -11,7 +11,9 @@
 
 <ion-content>
     <ion-card>
-        <ion-img ionImgViewer src="/assets/WPW_2020_Site GuideMap.png"></ion-img>
+        <div (click)="openViewer()">
+            <ion-img id='mapEventImg'></ion-img>
+        </div>
         <ion-card-header>
             <ion-card-title><b>World Partnership Walk Toronto</b></ion-card-title>
         </ion-card-header>

@@ -12,13 +12,27 @@ describe('MapRoutePage', () => {
       declarations: [ MapRoutePage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
-
-    fixture = TestBed.createComponent(MapRoutePage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   }));
 
+  beforeEach(function () {
+    fixture = TestBed.createComponent(MapRoutePage);
+    component = fixture.componentInstance;
+  });
+
+  afterEach(function () {
+    fixture.destroy();
+    component = null;
+  });
+
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
+
+  it('should have a title as Map of the Route', async () => {
+    fixture.detectChanges();
+    const page = fixture.nativeElement;
+    const title = page.querySelectorAll('ion-title');
+    expect(title[0].textContent).toContain('Map of the Route');
+  })
 });

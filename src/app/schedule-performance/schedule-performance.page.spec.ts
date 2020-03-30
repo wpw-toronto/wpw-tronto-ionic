@@ -56,7 +56,7 @@ describe('SchedulePerformancePage', () => {
     fixture.detectChanges();
     if (fixture.componentInstance.afAuth.auth.currentUser) {
     } else {
-      await fixture.componentInstance.afAuth.auth.signInWithEmailAndPassword('heons921@gmail.com', '123qweasd!');
+      await fixture.componentInstance.afAuth.auth.signInWithEmailAndPassword('heons921@gmail.com', '123qweasd1!');
     }
     const page = fixture.nativeElement;
     const title = page.querySelectorAll('ion-title');
@@ -66,7 +66,7 @@ describe('SchedulePerformancePage', () => {
   it('should have schedule data from server', async () => {
     // Login
     fixture.detectChanges();
-    await fixture.componentInstance.afAuth.auth.signInWithEmailAndPassword('heons921@gmail.com', '123qweasd!');
+    await fixture.componentInstance.afAuth.auth.signInWithEmailAndPassword('heons921@gmail.com', '123qweasd1!');
   
     // Get event list from the server.
     fixture.detectChanges();

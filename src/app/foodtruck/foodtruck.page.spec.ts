@@ -12,13 +12,28 @@ describe('FoodtruckPage', () => {
       declarations: [ FoodtruckPage ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
-
-    fixture = TestBed.createComponent(FoodtruckPage);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   }));
 
+  beforeEach(function () {
+    fixture = TestBed.createComponent(FoodtruckPage);
+    component = fixture.componentInstance;
+  });
+  
+  afterEach(function () {
+    fixture.destroy();
+    component = null;
+  });
+
+
   it('should create', () => {
+    fixture.detectChanges();
     expect(component).toBeTruthy();
   });
+
+  it('should have a title as Food Truck', async () => {
+    fixture.detectChanges();
+    const page = fixture.nativeElement;
+    const title = page.querySelectorAll('ion-title');
+    expect(title[0].textContent).toContain('Food Truck');
+  })
 });

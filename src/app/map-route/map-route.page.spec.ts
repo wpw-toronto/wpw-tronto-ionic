@@ -3,6 +3,11 @@ import { IonicModule } from '@ionic/angular';
 
 import { MapRoutePage } from './map-route.page';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
+import { environment } from '../../environments/environment';
+
+
 describe('MapRoutePage', () => {
   let component: MapRoutePage;
   let fixture: ComponentFixture<MapRoutePage>;
@@ -10,7 +15,14 @@ describe('MapRoutePage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ MapRoutePage ],
-      imports: [IonicModule.forRoot()]
+      providers: [
+        AngularFireAuth,
+      ],
+      imports: [
+        IonicModule.forRoot(),
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFireAuthModule
+      ]
     }).compileComponents();
   }));
 
@@ -35,4 +47,18 @@ describe('MapRoutePage', () => {
     const title = page.querySelectorAll('ion-title');
     expect(title[0].textContent).toContain('Map of the Route');
   })
+
+  it('should have map image data from server', async () => {
+    // Login
+    fixture.detectChanges();
+    await fixture.componentInstance.afAuth.auth.signInWithEmailAndPassword('heons921@gmail.com', '123qweasd1!');
+
+    // Get event list from the server.
+    fixture.detectChanges();
+    await component.getMapImage().then(() => {
+      fixture.detectChanges();
+      expect(component.getLoadedImgSrc()).toBeTruthy();
+    });
+  });
+  
 });

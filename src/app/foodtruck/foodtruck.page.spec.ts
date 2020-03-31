@@ -5,6 +5,7 @@ import { FoodtruckPage } from './foodtruck.page';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule, AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { environment } from '../../environments/environment';
 
 describe('FoodtruckPage', () => {
@@ -16,6 +17,7 @@ describe('FoodtruckPage', () => {
       declarations: [ FoodtruckPage ],
       providers: [
         AngularFireAuth,
+        AngularFirestore,
       ],
       imports: [
         IonicModule.forRoot(),
@@ -54,11 +56,27 @@ describe('FoodtruckPage', () => {
     fixture.detectChanges();
     await fixture.componentInstance.afAuth.auth.signInWithEmailAndPassword('heons921@gmail.com', '123qweasd1!');
 
-    // Get event list from the server.
+    // Get image list from the server.
     fixture.detectChanges();
     await component.getImages().then(() => {
       fixture.detectChanges();
       expect(component.getLoadedImgsSrc().length).toBeGreaterThan(0);
+    });
+  });
+
+
+  it('should have foodtruck list data from server', async () => {
+    // // Login
+    fixture.detectChanges();
+    await fixture.componentInstance.afAuth.auth.signInWithEmailAndPassword('heons921@gmail.com', '123qweasd1!');
+
+    // Get foodtruck list from the server.
+    fixture.detectChanges();
+    await component.getFoodtruckList().then(() => {
+      fixture.detectChanges();
+      const page = fixture.nativeElement;
+      const foodtruckList = page.querySelectorAll('.foodtruck-list');
+      expect(foodtruckList.length).toBeGreaterThan(0);
     });
   });
 

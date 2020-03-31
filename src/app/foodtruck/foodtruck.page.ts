@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+
+import { CrudServiceFoodtruck } from './foodtruck.service';
+import { ModelFoodtruck } from '../model/foodtruck.model'
+import { Observable } from 'rxjs';
+
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
 
@@ -14,7 +19,13 @@ export class FoodtruckPage implements OnInit {
   // Loaded Image url
   public loadedImgsSrc: string[] = [];
 
+  // For food truck list
+  public foodtruckList: Observable<ModelFoodtruck[]>;
+  public foodtruckListRawData: ModelFoodtruck[];
+  public foodtruckService;
+
   constructor(
+    private crudService: CrudServiceFoodtruck,
     public afAuth: AngularFireAuth) {
   }
 
@@ -32,13 +43,13 @@ export class FoodtruckPage implements OnInit {
     await starsRef.getDownloadURL().then(function (url) {
       // Insert url into an <img> tag to "download"
 
-      var foodTruck1Img = document.getElementById("foodTruck1Img") as HTMLImageElement;
-      var foodTruck2Img = document.getElementById("foodTruck2Img") as HTMLImageElement;
-      var foodTruck3Img = document.getElementById("foodTruck3Img") as HTMLImageElement;
+      // var foodTruck1Img = document.getElementById("foodTruck1Img") as HTMLImageElement;
+      // var foodTruck2Img = document.getElementById("foodTruck2Img") as HTMLImageElement;
+      // var foodTruck3Img = document.getElementById("foodTruck3Img") as HTMLImageElement;
 
-      foodTruck1Img.src = url;
-      foodTruck2Img.src = url;
-      foodTruck3Img.src = url;
+      // foodTruck1Img.src = url;
+      // foodTruck2Img.src = url;
+      // foodTruck3Img.src = url;
 
       this.loadedImgsSrc.push(url);
       this.loadedImgsSrc.push(url);
@@ -73,7 +84,27 @@ export class FoodtruckPage implements OnInit {
     // console.log(this.loadedImgsSrc);
   }
 
+  async getFoodtruckList() {
+    // Get data from the server
+    this.foodtruckService = this.crudService.read_Foodtruck();
+    await this.foodtruckService.subscribe(data => {
+      this.foodtruckList = (data.map(e => {
+        return {
+          id: e.payload.doc.id,
+          title: e.payload.doc.data()['title'],
+          sub_title: e.payload.doc.data()['sub_title'],
+          description: e.payload.doc.data()['description'],
+          image_url: e.payload.doc.data()['image_url'],
+        };
+      }));
+      // this.foodtruckListRawData = this.foodtruckList as unknown as ModelFoodtruck[];
+      this.foodtruckListRawData = this.foodtruckList as unknown as ModelFoodtruck[];
+    });
+  }
+
+
   ngOnInit() {
+    this.getFoodtruckList();
     this.getImages();
   }
 

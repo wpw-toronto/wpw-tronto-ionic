@@ -57,7 +57,7 @@ export class SchedulePerformancePage implements OnInit {
 
     var minutes = Number(time.match(/:(\d+)/)[1]);
     hours = hours * 100 + minutes;
-    console.log(time + " - " + hours);
+    // console.log(time + " - " + hours);
     return hours;
   }
 

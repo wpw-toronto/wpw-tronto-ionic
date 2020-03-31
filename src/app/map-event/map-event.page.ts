@@ -4,6 +4,7 @@ import { ViewerModalComponent} from 'ngx-ionic-image-viewer';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
 
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-map-event',
@@ -11,7 +12,13 @@ import 'firebase/storage';
   styleUrls: ['./map-event.page.scss'],
 })
 export class MapEventPage implements OnInit {
-  constructor(public modalController: ModalController)
+
+  // Loaded Image url
+  public loadedImgSrc :string = null;
+
+  constructor(
+    public modalController: ModalController,
+    public afAuth: AngularFireAuth)
   {
   }
 
@@ -31,18 +38,24 @@ export class MapEventPage implements OnInit {
     return await modal.present();
   }
 
-  ngOnInit() {
+  getLoadedImgSrc() {
+    return this.loadedImgSrc;
+  }
+
+  async getMapImage() {
     // Points to the root reference
-    var storageRef = firebase.storage().ref();
+    let storageRef = firebase.storage().ref();
     // Create a reference to the file we want to download
-    var starsRef = storageRef.child('WPW_2020_Site GuideMap.png');
+    let starsRef = storageRef.child('WPW_2020_Site GuideMap.png');
 
     // Get the download URL
-    starsRef.getDownloadURL().then(function (url) {
+    await starsRef.getDownloadURL().then(function (url) {
       // Insert url into an <img> tag to "download"
-      var mapEventImg = document.getElementById("mapEventImg") as HTMLImageElement;
+      let mapEventImg = document.getElementById("mapEventImg") as HTMLImageElement;
       mapEventImg.src = url;
-    }).catch(function (error) {
+
+      this.loadedImgSrc = url;
+    }.bind(this)).catch(function (error) {
 
       // A full list of error codes is available at
       // https://firebase.google.com/docs/storage/web/handle-errors
@@ -68,5 +81,10 @@ export class MapEventPage implements OnInit {
           break;
       }
     });
+  }
+
+
+  ngOnInit() {
+    this.getMapImage();
   }
 }

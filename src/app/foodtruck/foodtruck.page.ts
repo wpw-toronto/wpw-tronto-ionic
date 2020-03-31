@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as firebase from 'firebase/app';
 import 'firebase/storage';
 
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-foodtruck',
@@ -10,18 +11,27 @@ import 'firebase/storage';
 })
 export class FoodtruckPage implements OnInit {
 
-  constructor() { }
+  // Loaded Image url
+  public loadedImgsSrc: string[] = [];
 
-  ngOnInit() {
+  constructor(
+    public afAuth: AngularFireAuth) {
+  }
+
+  getLoadedImgsSrc() {
+    return this.loadedImgsSrc;
+  }
+
+  async getImages() {
     // Points to the root reference
     var storageRef = firebase.storage().ref();
     // Create a reference to the file we want to download
     var starsRef = storageRef.child('food_truck_sample.jpg');
 
     // Get the download URL
-    starsRef.getDownloadURL().then(function (url) {
+    await starsRef.getDownloadURL().then(function (url) {
       // Insert url into an <img> tag to "download"
-      
+
       var foodTruck1Img = document.getElementById("foodTruck1Img") as HTMLImageElement;
       var foodTruck2Img = document.getElementById("foodTruck2Img") as HTMLImageElement;
       var foodTruck3Img = document.getElementById("foodTruck3Img") as HTMLImageElement;
@@ -30,7 +40,10 @@ export class FoodtruckPage implements OnInit {
       foodTruck2Img.src = url;
       foodTruck3Img.src = url;
 
-    }).catch(function (error) {
+      this.loadedImgsSrc.push(url);
+      this.loadedImgsSrc.push(url);
+      this.loadedImgsSrc.push(url);
+    }.bind(this)).catch(function (error) {
 
       // A full list of error codes is available at
       // https://firebase.google.com/docs/storage/web/handle-errors
@@ -56,6 +69,12 @@ export class FoodtruckPage implements OnInit {
           break;
       }
     });
+
+    // console.log(this.loadedImgsSrc);
+  }
+
+  ngOnInit() {
+    this.getImages();
   }
 
 
